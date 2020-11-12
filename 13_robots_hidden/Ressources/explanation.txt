@@ -1,0 +1,11 @@
+The vulnerability is about the url
+robots.txt is a file protocol which exclude web crawlers from accessing to a part of the site
+this file must be at the root of the project. So let's try http://{YOUR IP}/robots.txt
+you'll see that there is 2 files disallow : here we'll use the /.hidden
+
+Now, when we go to http://{YOUR IP}/.hidden, we can see that there are links, which lead to others links, witch lead to others links, which lead to README files.
+We're sure that one of those files contain the flag, so you just have to execute the download_script.sh.
+It will get all those README, search for files that contain numbers (because all flags have numbers), and then delete all README.
+We get only one file that contain numbers: the flag !
+
+how to correct: - protect all your important files from accessing (not only for web crawlers)

@@ -1,0 +1,7 @@
+The vulnerability is on the recover page
+When you inspect the HTML, there is an hidden input for the mail witch we will get the password
+Just change the value to the one you want the password, and submit.
+
+
+how to correct: - send the request value in an other way, not in an hidden input, but in something the user can't access
+                - you can also only retrieve the mail in the back, not in the front

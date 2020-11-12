@@ -1,0 +1,7 @@
+The vulnerability is about the feedback page
+If you try to put an empty name, you'll get an error message, saying that the name can't be empty (the function checking that can be found in a script on the HTML)
+But if you watch the console, you'll also see an error saying that the function checkForm doesn't exist
+This function is not that same as the one  witch check if field is empty, so the content of the field is maybe not well checked
+If we try to write something like alert or scrit in the name or message section, you'll get the flag
+
+how to correct: - check and sanitize the value receive from the form

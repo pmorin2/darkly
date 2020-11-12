@@ -1,0 +1,13 @@
+The vulnerability is on the copyright page, you can access it by clicking on the copyright at the end of the home page
+While inspecting the HTML, you can see a big comment, and in it, there is:
+"<!--
+You must cumming from : "https://www.nsa.gov/" to go to the next step
+-->"
+and also:
+"Let's use this browser : "ft_bornToSec". It will help you a lot."
+
+so we'll do a request as asked (just replace {YOUR IP} and exec the command on this folder (5_headers)):
+curl --referer 'https://www.nsa.gov/' --user-agent 'ft_bornToSec' http://{YOUR IP}/?page=e43ad1fdc54babe674da7c7b8f0127bde61de3fbe01def7d00f151c2fcca6d1c | grep "flag"
+
+how to correct: - there is no correction, that's just something like an "easter egg" (but it's a real thing to find!)
+                - if you still want to prevent user to get this flag, you can protect the site from curl spoofing

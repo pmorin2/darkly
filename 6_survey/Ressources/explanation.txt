@@ -1,0 +1,7 @@
+The vulnerability is on the survey page
+While inspecting the HTML, you can see that values are chosen with a select and options from 1 to 10
+Just change one of the values (put something like 42), and pick it in the survey
+that allow you to change the value sent. After that, the flag will appear
+
+how to correct: - check the value receive from the request
+                - get the value from the selected option out of the user's view

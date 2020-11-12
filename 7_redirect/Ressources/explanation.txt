@@ -1,0 +1,8 @@
+The vulnerability is about the redirection on the home page
+While inspecting the Facebook, twitter or instagram redirection, you can see that it redirect to:
+http://{YOUR IP}/index.php?page=redirect&site={facebook or twitter or instagram}
+
+If we try something else, instead of a social network, we'll get the flag:
+http://{YOUR IP}/index.php?page=redirect&site=hacked
+
+how to correct: - check and sanitize the value receive from the request

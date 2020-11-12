@@ -1,0 +1,12 @@
+The vulnerability is about the url
+robots.txt is a file protocol which exclude web crawlers from accessing to a part of the site
+this file must be at the root of the project. So let's try http://{YOUR IP}/robots.txt
+you'll see that there is 2 files disallow : here we'll use the /whatever
+
+Now, we'll go to http://{YOUR IP}/whatever and download the file in it (which is htpasswd). We can see in this file :
+root:8621ffdbc5698829397d97767ac13db3
+if we decrypt the password using md5, we get dragon.
+commonly, the couple found in htpasswd is used in a page like http://{YOUR IP}/admin
+So now, go to that page, and you will be able to use those login informations and access to the flag
+
+how to correct: - protect all your important files from accessing (not only for web crawlers)

@@ -1,0 +1,7 @@
+The vulnerability is about the cookie on the home page
+If you examine the cookies (for example using EditThisCookie), you can see that there is one called I_am_admin with the value:
+68934a3e9455fa72420237eb05902327 : When decrypting it in md5, it means false
+So if you change this cookie, replacing false by true in md5 (b326b5062b2f0e69046810717534cb09), an alert will show you the flag
+
+how to correct: - Don't put important information in cookies
+                - At least, crypt it with a better algorithm, and don't use true or false value (check it in the back if necessary)

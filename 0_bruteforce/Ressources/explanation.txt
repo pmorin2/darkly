@@ -1,0 +1,9 @@
+The vulnerability is on the signin page
+You can find the most commun passwords on fr.wikipedia.org/wiki/Liste_des_mots_de_passe_les_plus_courants
+The most commun username are root and admin, so you can do a bruteforce script, or just try a few passwords
+
+Username:root
+Password:shadow
+
+how to correct: - change to a most complexe password, a personalised one
+                - you can also limit the number of request per IP, with maybe a mail to the owner of the login.
